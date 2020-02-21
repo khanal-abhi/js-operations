@@ -54,6 +54,9 @@ class ViewController: UIViewController {
     
     func didLoadJS() {
         jsLoaded = true
+        if isSetupDone() && !didSetupFail() {
+            beginCallsToStartOperation()
+        }
     }
     
     func didFailToLoadJS() {
@@ -62,6 +65,9 @@ class ViewController: UIViewController {
     
     func didEstablishWKConnection() {
         wkConnectionEstablished = true
+        if isSetupDone() && !didSetupFail() {
+            beginCallsToStartOperation()
+        }
     }
     
     func didFailToEstablishWKConnection() {
@@ -76,6 +82,12 @@ class ViewController: UIViewController {
     /// Is the setup done and either jsLoaded or wkConnectionEstablished is false
     func didSetupFail() -> Bool {
         jsLoaded ?? true == false || wkConnectionEstablished ?? true == false
+    }
+    
+    func beginCallsToStartOperation() {
+        for i in 1...6 {
+            callStartOperation(withId: "\(i)")
+        }
     }
     
     func presentAlertModal(withTitle title: String?, message: String?, andPrefferedStyle style: UIAlertController.Style) {
