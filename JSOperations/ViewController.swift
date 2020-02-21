@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     
     let jsBundlePath = "https://jumboassetsv1.blob.core.windows.net/publicfiles/interview_bundle.js"
     let jumboMessageIdentifier = "jumbo"
+    let jsonDecoder = JSONDecoder()
     private let jsLoader = JSLoader()
     
     @IBOutlet var wkWebView: WKWebView!
@@ -96,6 +97,10 @@ class ViewController: UIViewController {
             alertModal.dismiss(animated: true)
         }))
         present(alertModal, animated: true)
+    }
+    
+    func handle(jumboMessage: JumboMessage) {
+        print("I am updating \(jumboMessage.id)")
     }
 }
 

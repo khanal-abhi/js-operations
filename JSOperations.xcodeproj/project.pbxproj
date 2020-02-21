@@ -18,6 +18,7 @@
 		3861DE952400752300805F59 /* ViewController+WKScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861DE942400752300805F59 /* ViewController+WKScriptMessageHandler.swift */; };
 		3861DE99240084B600805F59 /* JSLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861DE98240084B600805F59 /* JSLoader.swift */; };
 		3861DE9B2400865600805F59 /* ViewController+JSLoaderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861DE9A2400865600805F59 /* ViewController+JSLoaderDelegate.swift */; };
+		3861DE9D2400925F00805F59 /* JumboMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861DE9C2400925F00805F59 /* JumboMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		3861DE942400752300805F59 /* ViewController+WKScriptMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+WKScriptMessageHandler.swift"; sourceTree = "<group>"; };
 		3861DE98240084B600805F59 /* JSLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSLoader.swift; sourceTree = "<group>"; };
 		3861DE9A2400865600805F59 /* ViewController+JSLoaderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+JSLoaderDelegate.swift"; sourceTree = "<group>"; };
+		3861DE9C2400925F00805F59 /* JumboMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumboMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				3861DE9A2400865600805F59 /* ViewController+JSLoaderDelegate.swift */,
 				3861DE98240084B600805F59 /* JSLoader.swift */,
 				3861DE942400752300805F59 /* ViewController+WKScriptMessageHandler.swift */,
+				3861DE9C2400925F00805F59 /* JumboMessage.swift */,
 				3861DE6A2400710D00805F59 /* Main.storyboard */,
 				3861DE6D2400710F00805F59 /* Assets.xcassets */,
 				3861DE6F2400710F00805F59 /* LaunchScreen.storyboard */,
@@ -272,6 +275,7 @@
 				3861DE692400710D00805F59 /* ViewController.swift in Sources */,
 				3861DE952400752300805F59 /* ViewController+WKScriptMessageHandler.swift in Sources */,
 				3861DE9B2400865600805F59 /* ViewController+JSLoaderDelegate.swift in Sources */,
+				3861DE9D2400925F00805F59 /* JumboMessage.swift in Sources */,
 				3861DE652400710D00805F59 /* AppDelegate.swift in Sources */,
 				3861DE672400710D00805F59 /* SceneDelegate.swift in Sources */,
 			);

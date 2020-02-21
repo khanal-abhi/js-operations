@@ -32,7 +32,15 @@ extension ViewController: WKScriptMessageHandler {
     ///   - userContentController: that belongs to the configured wkwebview
     ///   - message: sent by the wkwebview js context
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print(message.name)
-        print(message.body)
+        if message.name == jumboMessageIdentifier,
+            let jsonString = message.body as? String,
+            let jsonData = jsonString.data(using: .utf8) {
+            do {
+                let jumboMessage = try jsonDecoder.decode(JumboMessage.self, from: jsonData)
+                handle(jumboMessage: jumboMessage)
+            } catch (let e) {
+                print(e)
+            }
+        }
     }
 }
