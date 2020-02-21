@@ -10,18 +10,10 @@ import Foundation
 
 class JSLoader {
     
-    private var _delegate: JSLoaderDelegate?
-//    private var _urlRequest: URLRequest?
+    var delegate: JSLoaderDelegate?
     
-    public var delegate: JSLoaderDelegate? {
-        set (newDelagate) {
-            _delegate = newDelagate
-        }
-        get {
-            return _delegate
-        }
-    }
-    
+    /// Use URLSession to load raw data from the url
+    /// - Parameter fromURLString: url string to load the raw data from
     func loadBundle(fromURLString: String) {
         guard let url = URL(string: fromURLString) else {
             return
@@ -29,9 +21,7 @@ class JSLoader {
         let urlRequest = URLRequest(
             url: url,
             cachePolicy: .reloadIgnoringCacheData)
-        
-//        _urlRequest = urlRequest
-        
+                
         let sessionTask = URLSession.shared.dataTask(with: urlRequest) { (data, urlResponse, err) in
             DispatchQueue.main.async {
                 self.delegate?.didComplete(urlRequest: urlRequest, withData: data, response: urlResponse, andError: err)
@@ -42,6 +32,7 @@ class JSLoader {
     }
 }
 
+/// A protocol that allows JSLoader to delagate handling of the URLSessionDataTask callback
 protocol JSLoaderDelegate {
     func didComplete(urlRequest: URLRequest?, withData data: Data?, response: URLResponse?, andError error: Error?)
 }

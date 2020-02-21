@@ -10,6 +10,12 @@ import Foundation
 
 extension ViewController: JSLoaderDelegate {
     
+    /// The loading of raw data from a url string has been completed
+    /// - Parameters:
+    ///   - urlRequest: created by the JSLoader
+    ///   - data: returned by the response
+    ///   - response: to the url request
+    ///   - error: encountered trying to make the reuqest
     func didComplete(urlRequest: URLRequest?, withData data: Data?, response: URLResponse?, andError error: Error?) {
         if let _ = error {
             didFailToLoadJS()

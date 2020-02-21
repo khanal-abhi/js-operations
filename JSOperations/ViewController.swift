@@ -17,9 +17,9 @@ class ViewController: UIViewController {
     private let jsLoader = JSLoader()
     
     @IBOutlet var wkWebView: WKWebView!
-    var urlRequest: URLRequest!
-    var jsLoaded: Bool?
-    var wkConnectionEstablished: Bool?
+    private var jsLoaded: Bool?
+    private var wkConnectionEstablished: Bool?
+    private var setupfailureHandled = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,17 +28,21 @@ class ViewController: UIViewController {
         configureWKWebViewForIO()
     }
     
+    /// Create a IO cgannel with the WKWebView
     private func configureWKWebViewForIO() {
         wkWebView.configuration.userContentController.add(
             self, name: jumboMessageIdentifier)
     }
     
+    /// Follow the JSLoaderDelagate protocol and set self as the JSLoaderDelegate
     private func startLoadingJSBundle() {
         jsLoader.delegate = self
         jsLoader.loadBundle(fromURLString: jsBundlePath)
     }
     
-    func callJSOperation(withId id: String) {
+    /// Call the "startOperation" function within the wkwebview's js context
+    /// - Parameter id: id of the operation to be started
+    func callStartOperation(withId id: String) {
         wkWebView.evaluateJavaScript("startOperation(\(id));") { (res, err) in
             if let err = err {
                 print(err)
@@ -50,43 +54,28 @@ class ViewController: UIViewController {
     
     func didLoadJS() {
         jsLoaded = true
-        testForSetupFailure()
     }
     
     func didFailToLoadJS() {
         jsLoaded = false
-        testForSetupFailure()
     }
     
     func didEstablishWKConnection() {
         wkConnectionEstablished = true
-        testForSetupFailure()
     }
     
     func didFailToEstablishWKConnection() {
         wkConnectionEstablished = false
-        testForSetupFailure()
     }
     
+    /// Are both jsLoaded and wkConnectionEstablished values loaded
     func isSetupDone() -> Bool {
         return jsLoaded != nil && wkConnectionEstablished != nil
     }
     
+    /// Is the setup done and either jsLoaded or wkConnectionEstablished is false
     func didSetupFail() -> Bool {
         jsLoaded ?? true == false || wkConnectionEstablished ?? true == false
-    }
-    
-    func testForSetupFailure() {
-        if isSetupDone() {
-            if didSetupFail() {
-                presentAlertModal(withTitle: "Error", message: "Setup Failed",
-                                  andPrefferedStyle: .alert)
-            } else {
-//                presentAlertModal(withTitle: "Success", message: "Setup Successful",
-//                                  andPrefferedStyle: .alert)
-                callJSOperation(withId: "1")
-            }
-        }
     }
     
     func presentAlertModal(withTitle title: String?, message: String?, andPrefferedStyle style: UIAlertController.Style) {
