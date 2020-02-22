@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fwH-Sp-H1L">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -7,39 +7,123 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Jumbo View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JSOperations" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="JumboViewController" customModule="JSOperations" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="veb-BD-HE7">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="34" width="414" height="828"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGo-Tt-EPe">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nag-n8-LUk">
+                                        <rect key="frame" x="10" y="20" width="394" height="60"/>
+                                        <subviews>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EOy-eP-eaD" customClass="ABProgressView" customModule="JSOperations" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="t6g-57-9Uy"/>
+                                                </constraints>
+                                            </view>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EWl-I4-sGK" customClass="ABProgressView" customModule="JSOperations" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="d7P-Wg-V9F"/>
+                                                </constraints>
+                                            </view>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KSj-zF-ahv" customClass="ABProgressView" customModule="JSOperations" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="yUp-iN-oqH"/>
+                                                </constraints>
+                                            </view>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ukx-mF-yxV" customClass="ABProgressView" customModule="JSOperations" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="xod-fX-ngz"/>
+                                                </constraints>
+                                            </view>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2bw-EQ-oo4" customClass="ABProgressView" customModule="JSOperations" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="rjY-wL-76f"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fmi-U0-dBb">
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="60"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="fmi-U0-dBb" firstAttribute="height" secondItem="2bw-EQ-oo4" secondAttribute="height" id="k5c-86-jdG"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="nag-n8-LUk" firstAttribute="leading" secondItem="BGo-Tt-EPe" secondAttribute="leading" constant="10" id="Ahe-IE-FJm"/>
+                                    <constraint firstItem="nag-n8-LUk" firstAttribute="top" secondItem="BGo-Tt-EPe" secondAttribute="top" constant="20" symbolic="YES" id="jDc-uq-UQf"/>
+                                    <constraint firstItem="nag-n8-LUk" firstAttribute="width" secondItem="BGo-Tt-EPe" secondAttribute="width" constant="-20" id="kTF-Rs-eGf"/>
+                                    <constraint firstAttribute="bottom" secondItem="nag-n8-LUk" secondAttribute="bottom" constant="20" symbolic="YES" id="s0b-Fm-eSw"/>
+                                    <constraint firstAttribute="trailing" secondItem="nag-n8-LUk" secondAttribute="trailing" constant="10" id="s52-s7-jyZ"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="ffd-pe-vv4"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="VRz-Ut-B2a"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="veb-BD-HE7" secondAttribute="bottom" id="0cs-hm-N7n"/>
-                            <constraint firstItem="veb-BD-HE7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="H1e-LG-dmg"/>
+                            <constraint firstItem="BGo-Tt-EPe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="2lw-H2-od7"/>
+                            <constraint firstItem="veb-BD-HE7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Aa7-ly-R3O"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="veb-BD-HE7" secondAttribute="trailing" id="HtG-9a-MPI"/>
-                            <constraint firstItem="veb-BD-HE7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Oab-hE-7lZ"/>
+                            <constraint firstItem="BGo-Tt-EPe" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="KQ5-Fh-9uI"/>
+                            <constraint firstItem="veb-BD-HE7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Paj-VR-gV9"/>
+                            <constraint firstItem="BGo-Tt-EPe" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="bOg-ro-FRo"/>
+                            <constraint firstItem="BGo-Tt-EPe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="lRz-Dy-CIs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="pUD-fa-9wT"/>
                     <connections>
-                        <outlet property="wkWebView" destination="veb-BD-HE7" id="JMd-BT-khC"/>
+                        <outlet property="abProgressView1" destination="EOy-eP-eaD" id="mQ3-N5-z7h"/>
+                        <outlet property="abProgressView2" destination="EWl-I4-sGK" id="P2e-JT-FNi"/>
+                        <outlet property="abProgressView3" destination="KSj-zF-ahv" id="ZKg-GR-sse"/>
+                        <outlet property="abProgressView4" destination="Ukx-mF-yxV" id="oQR-TY-sFg"/>
+                        <outlet property="abProgressView5" destination="2bw-EQ-oo4" id="Zse-XP-i6J"/>
+                        <outlet property="stackView" destination="nag-n8-LUk" id="qTb-hq-uOy"/>
+                        <outlet property="wkWebView" destination="veb-BD-HE7" id="9Vw-pZ-kbk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="127"/>
+            <point key="canvasLocation" x="1047.8260869565217" y="126.5625"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="KBF-kN-BOG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fwH-Sp-H1L" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LQk-wK-6hy">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="djg-Nc-LPl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="58h-UE-MO3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>
         </scene>
     </scenes>
 </document>

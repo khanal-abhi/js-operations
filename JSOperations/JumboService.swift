@@ -1,50 +1,52 @@
 //
-//  ViewController.swift
+//  JumboService.swift
 //  JSOperations
 //
-//  Created by Abhinash Khanal on 2/21/20.
+//  Created by Abhinash Khanal on 2/22/20.
 //  Copyright © 2020 abhinash.com. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import WebKit
 
-class ViewController: UIViewController {
-    
+class JumboService {
     
     let jsBundlePath = "https://jumboassetsv1.blob.core.windows.net/publicfiles/interview_bundle.js"
     let jumboMessageIdentifier = "jumbo"
     let jsonDecoder = JSONDecoder()
     private let jsLoader = JSLoader()
     
-    @IBOutlet var wkWebView: WKWebView!
     private var jsLoaded: Bool?
     private var wkConnectionEstablished: Bool?
     private var setupfailureHandled = false
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        startLoadingJSBundle()
-        configureWKWebViewForIO()
-    }
+    public var delegate: JSLoaderDelegate?
+    private weak var wkWebView: WKWebView?
+    public weak var parentViewController: JumboViewController?
     
-    /// Create a IO cgannel with the WKWebView
-    private func configureWKWebViewForIO() {
-        wkWebView.configuration.userContentController.add(
-            self, name: jumboMessageIdentifier)
+    /// Initialize JumboService with a delegate
+    /// - Parameter delegate: for handling loading of js resources
+    init(withDelegate delegate: JSLoaderDelegate) {
+        self.delegate = delegate
     }
     
     /// Follow the JSLoaderDelagate protocol and set self as the JSLoaderDelegate
-    private func startLoadingJSBundle() {
-        jsLoader.delegate = self
+    func startLoadingJSBundle() {
+        jsLoader.delegate = delegate
         jsLoader.loadBundle(fromURLString: jsBundlePath)
+    }
+    
+    /// Create a IO channel with the WKWebView
+    func configure(wkWebView: WKWebView,
+                   withScripMessageHandler handler: WKScriptMessageHandler) {
+        self.wkWebView = wkWebView
+        wkWebView.configuration.userContentController.add(
+            handler, name: jumboMessageIdentifier)
     }
     
     /// Call the "startOperation" function within the wkwebview's js context
     /// - Parameter id: id of the operation to be started
     func callStartOperation(withId id: String) {
-        wkWebView.evaluateJavaScript("startOperation(\(id));") { (res, err) in
+        wkWebView?.evaluateJavaScript("startOperation(\(id));") { (res, err) in
             if let err = err {
                 print(err)
             } else if let res = res {
@@ -87,20 +89,23 @@ class ViewController: UIViewController {
     
     func beginCallsToStartOperation() {
         for i in 1...6 {
-            callStartOperation(withId: "\(i)")
+            let id = "\(i)"
+            callStartOperation(withId: id)
+            parentViewController?.handle(jumboMessage: JumboMessage(id: id, message: "progress"))
         }
     }
     
-    func presentAlertModal(withTitle title: String?, message: String?, andPrefferedStyle style: UIAlertController.Style) {
-        let alertModal = UIAlertController(title: title, message: message, preferredStyle: style)
-        alertModal.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
-            alertModal.dismiss(animated: true)
-        }))
-        present(alertModal, animated: true)
-    }
-    
-    func handle(jumboMessage: JumboMessage) {
-        print("I am updating \(jumboMessage.id)")
+    func parse(message: WKScriptMessage) -> JumboMessage? {
+        if message.name == jumboMessageIdentifier,
+            let jsonString = message.body as? String,
+            let jsonData = jsonString.data(using: .utf8) {
+            do {
+                let jumboMessage = try jsonDecoder.decode(JumboMessage.self, from: jsonData)
+                return jumboMessage
+            } catch (let e) {
+                print(e)
+            }
+        }
+        return nil
     }
 }
-

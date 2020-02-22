@@ -1,5 +1,5 @@
 //
-//  ViewController+WKScriptMessageHandler.swift
+//  JumboViewController+WKScriptMessageHandler.swift
 //  JSOperations
 //
 //  Created by Abhinash Khanal on 2/21/20.
@@ -8,21 +8,21 @@
 
 import WebKit
 
-extension ViewController: WKScriptMessageHandler {
+extension JumboViewController: WKScriptMessageHandler {
     
     /// Handle the evaluation of js string on the wkwebview
     /// - Parameter jsString: raw javascript string
     func handle(jsString: String) {
         wkWebView.evaluateJavaScript(jsString) { (message, err) in
             if let err = err {
-                self.didFailToEstablishWKConnection()
+                self._jumboService?.didFailToEstablishWKConnection()
                 self.presentAlertModal(withTitle: "Error", message: err.localizedDescription, andPrefferedStyle: .alert)
             } else if let _ = message {
                 // message was non-nil
-                self.didEstablishWKConnection()
+                self._jumboService?.didEstablishWKConnection()
             } else {
                 // message was nil
-                self.didEstablishWKConnection()
+                self._jumboService?.didEstablishWKConnection()
             }
         }
     }
@@ -32,15 +32,8 @@ extension ViewController: WKScriptMessageHandler {
     ///   - userContentController: that belongs to the configured wkwebview
     ///   - message: sent by the wkwebview js context
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        if message.name == jumboMessageIdentifier,
-            let jsonString = message.body as? String,
-            let jsonData = jsonString.data(using: .utf8) {
-            do {
-                let jumboMessage = try jsonDecoder.decode(JumboMessage.self, from: jsonData)
-                handle(jumboMessage: jumboMessage)
-            } catch (let e) {
-                print(e)
-            }
+        if let jumboMessage = _jumboService?.parse(message: message) {
+            handle(jumboMessage: jumboMessage)
         }
     }
 }
