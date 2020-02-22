@@ -35,9 +35,8 @@ class JumboService: JSLoaderDelegate {
     private var wkConnectionEstablished: Bool?
     private var setupfailureHandled = false
     private weak var wkWebView: WKWebView?
-    public weak var parentViewController: JumboViewController?
+    public weak var jumboControllerDelegate: JumboViewControllerProtocol?
     
-    /// Initialize JumboService with a delegate
     init() { }
     
     /// Follow the JSLoaderDelagate protocol and set self as the JSLoaderDelegate
@@ -106,7 +105,7 @@ class JumboService: JSLoaderDelegate {
         for i in 1...6 {
             let id = "\(i)"
             callStartOperation(withId: id)
-            parentViewController?.handle(jumboMessage: JumboMessage(id: id, message: "progress"))
+            jumboControllerDelegate?.handle(jumboMessage: JumboMessage(id: i, message: "progress"))
         }
     }
     
@@ -119,13 +118,13 @@ class JumboService: JSLoaderDelegate {
     func didComplete(urlRequest: URLRequest?, withData data: Data?, response: URLResponse?, andError error: Error?) {
         if let _ = error {
             didFailToLoadJS()
-            parentViewController?.presentAlertModal(withTitle: "Error", message: "Unable to load the JS bundle.", andPrefferedStyle: .alert)
+            jumboControllerDelegate?.presentAlertModal(withTitle: "Error", message: "Unable to load the JS bundle.", andPrefferedStyle: .alert)
         } else if let data = data {
             didLoadJS()
             if let jsString = String(data: data, encoding: .utf8) {
                 handle(jsString: jsString)
             } else {
-                parentViewController?.presentAlertModal(withTitle: "Error", message: "Unable to parse data using utf-8 encoding",
+                jumboControllerDelegate?.presentAlertModal(withTitle: "Error", message: "Unable to parse data using utf-8 encoding",
                                   andPrefferedStyle: .alert)
             }
         } else {
@@ -139,7 +138,7 @@ class JumboService: JSLoaderDelegate {
         wkWebView?.evaluateJavaScript(jsString) { (message, err) in
             if let err = err {
                 self.didFailToEstablishWKConnection()
-                self.parentViewController?.presentAlertModal(withTitle: "Error", message: err.localizedDescription, andPrefferedStyle: .alert)
+                self.jumboControllerDelegate?.presentAlertModal(withTitle: "Error", message: err.localizedDescription, andPrefferedStyle: .alert)
             } else if let _ = message {
                 // message was non-nil
                 self.didEstablishWKConnection()

@@ -9,7 +9,12 @@
 import UIKit
 import WebKit
 
-class JumboViewController: UIViewController {
+protocol JumboViewControllerProtocol: class {
+    func presentAlertModal(withTitle title: String?, message: String?, andPrefferedStyle style: UIAlertController.Style)
+    func handle(jumboMessage: JumboMessage)
+}
+
+class JumboViewController: UIViewController, JumboViewControllerProtocol {
     
     @IBOutlet var wkWebView: WKWebView!
     @IBOutlet var abProgressView1: ABProgressView!
@@ -29,7 +34,7 @@ class JumboViewController: UIViewController {
         // Do any additional setup after loading the view.
         navigationItem.title = "JS Operations"
         _jumboService = JumboService()
-        _jumboService?.parentViewController = self
+        _jumboService?.jumboControllerDelegate = self
         _jumboService?.startLoadingJSBundle()
         _jumboService?.configure(wkWebView: wkWebView, withScripMessageHandler: self)
     }
@@ -52,15 +57,15 @@ class JumboViewController: UIViewController {
     func handle(jumboMessage: JumboMessage) {
         var progressView: ABProgressView?
         switch jumboMessage.id {
-        case "1":
+        case 1:
             progressView = abProgressView1
-        case "2":
+        case 2:
             progressView = abProgressView2
-        case "3":
+        case 3:
             progressView = abProgressView3
-        case "4":
+        case 4:
             progressView = abProgressView4
-        case "5":
+        case 5:
             progressView = abProgressView5
         default:
             break

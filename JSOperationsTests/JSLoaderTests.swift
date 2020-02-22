@@ -8,6 +8,7 @@
 
 import XCTest
 
+/// MockJSLoaderDelegate that just passes through the delegate call over to the callback
 class MockJSLoaderDelegate: JSLoaderDelegate {
     
     var delegateCallbackHandler: (URLRequest?, Data?, URLResponse?, Error?) -> Void
