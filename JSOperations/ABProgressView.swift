@@ -48,6 +48,7 @@ class ABProgressView: UIView {
     /// Entry point of binding the JumboMessage model to this view
     /// - Parameter message: to be bound to the view
     func bind(toJumboMessage message: JumboMessage) {
+        jumboMessage = message
         operationLabel.text = "Operation: \(message.id)"
         if let state = message.state {
             if state.lowercased() == "success" {
@@ -78,6 +79,16 @@ class ABProgressView: UIView {
     
     private func changeTint(toColor color: UIColor) {
         self.operationProgress.tintColor = color
+    }
+    
+    /// This is necessary to ensure that the proper state is applied
+    /// in case of orientation changes which would call the
+    /// subviews to be laid out
+    override func layoutSubviews() {
+        if let jumboMessage = jumboMessage {
+            bind(toJumboMessage: jumboMessage)
+        }
+        super.layoutSubviews()
     }
 
 }
