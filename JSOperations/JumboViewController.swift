@@ -28,12 +28,17 @@ class JumboViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         navigationItem.title = "JS Operations"
-        _jumboService = JumboService(withDelegate: self)
+        _jumboService = JumboService()
         _jumboService?.parentViewController = self
         _jumboService?.startLoadingJSBundle()
         _jumboService?.configure(wkWebView: wkWebView, withScripMessageHandler: self)
     }
     
+    /// A helper function to present an alert modal with a single dismiss button
+    /// - Parameters:
+    ///   - title: of the modal
+    ///   - message: in the modal
+    ///   - style: of the modal
     func presentAlertModal(withTitle title: String?, message: String?, andPrefferedStyle style: UIAlertController.Style) {
         let alertModal = UIAlertController(title: title, message: message, preferredStyle: style)
         alertModal.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in

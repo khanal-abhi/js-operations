@@ -10,11 +10,13 @@ import Foundation
 
 class JSLoader {
     
-    var delegate: JSLoaderDelegate?
+    /// This is a static helper so disabling the constructor
+    private init() {}
     
     /// Use URLSession to load raw data from the url
     /// - Parameter fromURLString: url string to load the raw data from
-    func loadBundle(fromURLString: String) {
+    /// - Parameter delegate: for the loading completion
+    static func loadBundle(fromURLString: String, delegate: JSLoaderDelegate?) {
         guard let url = URL(string: fromURLString) else {
             return
         }
@@ -24,7 +26,7 @@ class JSLoader {
                 
         let sessionTask = URLSession.shared.dataTask(with: urlRequest) { (data, urlResponse, err) in
             DispatchQueue.main.async {
-                self.delegate?.didComplete(urlRequest: urlRequest, withData: data, response: urlResponse, andError: err)
+                delegate?.didComplete(urlRequest: urlRequest, withData: data, response: urlResponse, andError: err)
             }
         }
         

@@ -17,11 +17,18 @@
 		3861DE872400710F00805F59 /* JSOperationsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861DE862400710F00805F59 /* JSOperationsUITests.swift */; };
 		3861DE952400752300805F59 /* JumboViewController+WKScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861DE942400752300805F59 /* JumboViewController+WKScriptMessageHandler.swift */; };
 		3861DE99240084B600805F59 /* JSLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861DE98240084B600805F59 /* JSLoader.swift */; };
-		3861DE9B2400865600805F59 /* JumboViewController+JSLoaderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861DE9A2400865600805F59 /* JumboViewController+JSLoaderDelegate.swift */; };
 		3861DE9D2400925F00805F59 /* JumboMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861DE9C2400925F00805F59 /* JumboMessage.swift */; };
 		3861DE9F240113AF00805F59 /* JumboService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861DE9E240113AF00805F59 /* JumboService.swift */; };
 		3861DEA12401196200805F59 /* ABProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3861DEA02401196200805F59 /* ABProgressView.xib */; };
 		3861DEA32401198700805F59 /* ABProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861DEA22401198700805F59 /* ABProgressView.swift */; };
+		3861DEA92401705100805F59 /* JSLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861DEA82401705100805F59 /* JSLoaderTests.swift */; };
+		3861DEAA2401706900805F59 /* JSLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861DE98240084B600805F59 /* JSLoader.swift */; };
+		3861DEAB240172DC00805F59 /* JumboService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861DE9E240113AF00805F59 /* JumboService.swift */; };
+		3861DEAC2401732600805F59 /* JumboViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861DE682400710D00805F59 /* JumboViewController.swift */; };
+		3861DEAD2401732900805F59 /* JumboViewController+WKScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861DE942400752300805F59 /* JumboViewController+WKScriptMessageHandler.swift */; };
+		3861DEAE2401733400805F59 /* JumboMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861DE9C2400925F00805F59 /* JumboMessage.swift */; };
+		3861DEAF2401734400805F59 /* ABProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3861DEA02401196200805F59 /* ABProgressView.xib */; };
+		3861DEB02401734800805F59 /* ABProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3861DEA22401198700805F59 /* ABProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,11 +65,11 @@
 		3861DE882400710F00805F59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3861DE942400752300805F59 /* JumboViewController+WKScriptMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JumboViewController+WKScriptMessageHandler.swift"; sourceTree = "<group>"; };
 		3861DE98240084B600805F59 /* JSLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSLoader.swift; sourceTree = "<group>"; };
-		3861DE9A2400865600805F59 /* JumboViewController+JSLoaderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JumboViewController+JSLoaderDelegate.swift"; sourceTree = "<group>"; };
 		3861DE9C2400925F00805F59 /* JumboMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumboMessage.swift; sourceTree = "<group>"; };
 		3861DE9E240113AF00805F59 /* JumboService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumboService.swift; sourceTree = "<group>"; };
 		3861DEA02401196200805F59 /* ABProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ABProgressView.xib; sourceTree = "<group>"; };
 		3861DEA22401198700805F59 /* ABProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABProgressView.swift; sourceTree = "<group>"; };
+		3861DEA82401705100805F59 /* JSLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSLoaderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +123,6 @@
 				3861DE642400710D00805F59 /* AppDelegate.swift */,
 				3861DE662400710D00805F59 /* SceneDelegate.swift */,
 				3861DE682400710D00805F59 /* JumboViewController.swift */,
-				3861DE9A2400865600805F59 /* JumboViewController+JSLoaderDelegate.swift */,
 				3861DE98240084B600805F59 /* JSLoader.swift */,
 				3861DE942400752300805F59 /* JumboViewController+WKScriptMessageHandler.swift */,
 				3861DE9C2400925F00805F59 /* JumboMessage.swift */,
@@ -136,6 +142,7 @@
 			children = (
 				3861DE7B2400710F00805F59 /* JSOperationsTests.swift */,
 				3861DE7D2400710F00805F59 /* Info.plist */,
+				3861DEA82401705100805F59 /* JSLoaderTests.swift */,
 			);
 			path = JSOperationsTests;
 			sourceTree = "<group>";
@@ -264,6 +271,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3861DEAF2401734400805F59 /* ABProgressView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +294,6 @@
 				3861DE952400752300805F59 /* JumboViewController+WKScriptMessageHandler.swift in Sources */,
 				3861DE9F240113AF00805F59 /* JumboService.swift in Sources */,
 				3861DEA32401198700805F59 /* ABProgressView.swift in Sources */,
-				3861DE9B2400865600805F59 /* JumboViewController+JSLoaderDelegate.swift in Sources */,
 				3861DE9D2400925F00805F59 /* JumboMessage.swift in Sources */,
 				3861DE652400710D00805F59 /* AppDelegate.swift in Sources */,
 				3861DE672400710D00805F59 /* SceneDelegate.swift in Sources */,
@@ -297,7 +304,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3861DEAA2401706900805F59 /* JSLoader.swift in Sources */,
+				3861DEAC2401732600805F59 /* JumboViewController.swift in Sources */,
+				3861DEB02401734800805F59 /* ABProgressView.swift in Sources */,
+				3861DEAD2401732900805F59 /* JumboViewController+WKScriptMessageHandler.swift in Sources */,
 				3861DE7C2400710F00805F59 /* JSOperationsTests.swift in Sources */,
+				3861DEAE2401733400805F59 /* JumboMessage.swift in Sources */,
+				3861DEA92401705100805F59 /* JSLoaderTests.swift in Sources */,
+				3861DEAB240172DC00805F59 /* JumboService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

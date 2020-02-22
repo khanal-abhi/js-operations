@@ -37,7 +37,7 @@ class ABProgressView: UIView {
         if contentView != nil {
             operationLabel.text = "Operation:  "
             operationProgress.setProgress(0, animated: false)
-            operationProgress.trackTintColor = .blue
+            operationProgress.trackTintColor = .yellow
             operationStatusLabel.text = "In Progress"
             contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
             contentView.frame = frame
@@ -77,8 +77,11 @@ class ABProgressView: UIView {
         changeTint(toColor: .red)
     }
     
+    /// Matching both the progress tint and tracking tint in case of failure.
+    /// - Parameter color: to be applied to the progress view
     private func changeTint(toColor color: UIColor) {
-        self.operationProgress.tintColor = color
+        self.operationProgress.progressTintColor = color
+        self.operationProgress.trackTintColor = color
     }
     
     /// This is necessary to ensure that the proper state is applied
